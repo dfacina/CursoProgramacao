@@ -1,0 +1,225 @@
+/*
+Aluno : Daniel Guedes Facina Netto
+Matricula : 0050015172
+Professor : Alex Salgado
+--Programação 1-- */
+
+
+#include <stdio.h> // entrada e saída, tipo printf e scanf
+#include <stdlib.h> // emula / finge que é um prompt de sistema operacional.
+#include <iostream>  // stdio com outros recursos
+#include<string.h> // manipulação de strings
+#include<time.h> // manipulação de datas e horas
+
+
+/* Definição de Variáveis */
+
+char letras[27] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+int escolha = 0;
+int PosicLetra,i,k,erros,num,acertou;
+char Palavra[8],let_esc[1];
+char Resposta[] = "________";
+//char let_base[] = "a";
+void sleep();   
+void enforcado();
+void acha_palavra(); 
+int resp,Mconta;
+int main()
+{
+	num = 0;
+	erros = 0;
+	
+
+		
+    while (escolha != 1  && escolha != 2)
+    {
+	
+    	printf("Voce quer palavra fixa(1) ou aleatoria(2) ? (1/2)");
+    	scanf("%d",&escolha);
+    
+	}
+	
+	if(escolha == 2)
+		{
+	
+	
+		for (i=0;i<8;i++)
+			{
+				srand(time(NULL));
+				if (i == 0)
+		 		  	PosicLetra = rand() % 26;
+				else
+					PosicLetra = (rand() * i+1) % 26;
+			
+				Palavra[i] = letras[PosicLetra];
+				//printf("teste %s %d",letras,PosicLetra);
+			}
+		}
+	else
+		{
+			srand(time(NULL));
+			PosicLetra = rand() % 5;
+			//printf("\n%d",PosicLetra);
+			acha_palavra();
+		}
+	
+	
+	printf("Resultado:   %s \n",Palavra);
+	system("pause");
+	system("cls");
+	Mconta = 0;
+	while (num < 8)
+	{
+		
+			
+		printf("Escolha uma LETRA:  \n");
+		scanf(" %s", &let_esc);
+		let_esc[0] = toupper(let_esc[0]);
+
+		acertou = 0;		
+		 for (i=0;i<8;i++)
+		   {
+		   	
+		   	if (Palavra[i] == let_esc[0])
+		   		{	 
+		   		  printf("ACERTOU A LETRA:  %c  \n",Palavra[i]);
+		   		  Resposta[i] = Palavra[i];
+		   		 
+		   		  num ++;
+		   		  acertou = 1;
+		   		  system("cls");
+				  printf("Resposta: %s \n",Resposta);
+				  
+		   	    }
+			}
+			
+			
+			if(acertou != 1)
+			{
+			      
+				erros++;
+		   		system("cls");	
+				enforcado();
+				printf("Resposta: %s \n",Resposta);	 
+			
+			}
+			
+	    	if (erros > 4)  
+	   		 	
+	   		 	{
+				
+				num = 8;	
+				}
+		system("pause");
+
+	}
+	
+	if(erros == 0)
+	{
+		printf("Parabens Voce nao errou NADA %d\n",erros);
+	}
+	else
+	{
+		if (erros > 4)
+			printf("Voce esta MORTO !!!!!!  \n %d",erros);
+		else
+			printf("Parabens mas Voce errou ALGUMAS LETRAS \n %d",erros);
+	}
+	
+		return 0;
+}
+
+void acha_palavra (void)
+{
+
+	switch(PosicLetra)
+	{
+		case 0:
+			strcpy(Palavra ,"CONTROLE");
+			break;
+			
+		case 1:
+			strcpy(Palavra ,"ABOBORAS");
+			break;
+			
+		case 2:
+			strcpy(Palavra ,"DINASTIA");
+			break;
+			
+		case 3:
+			strcpy(Palavra ,"ELEFANTE");
+			break;
+			
+		case 4:
+			strcpy(Palavra ,"PROGRAMA");
+			break;
+	}
+}
+void enforcado(void)
+
+{
+      switch (erros)
+      {
+        
+        case 0:        printf ("_________       \n"
+                               "|       |       \n"
+							   "|               \n"
+							   "|               \n"
+							   "|               \n"
+							   "|     ______    \n"
+							   "|     |    |    \n"
+							   "|     |    |    \n");
+                break;
+        
+        case 1:        printf ("_________       \n"
+                               "|       |       \n"
+							   "|      (o)     \n"
+							   "|               \n"
+							   "|               \n"
+							   "|     ______    \n"
+							   "|     |    |    \n"
+							   "|     |    |    \n");
+               break;
+        case 2:        printf ("_________       \n"
+                               "|       |       \n"
+							   "|      (o)      \n"
+							   "|       |       \n"
+							   "|       |       \n"
+							   "|               \n"
+							   "|     ______    \n"
+							   "|     |    |    \n"
+							   "|     |    |    \n");
+               break;
+        case 3:        printf ("_________       \n"
+                               "|       |       \n"
+							   "|      (o)      \n"
+							   "|      /|\\      \n"
+						       "|       |       \n"
+							   "|               \n"
+							   "|     ______    \n"
+							   "|     |    |    \n"
+							   "|     |    |    \n");
+               break; 
+        case 4:        printf ("_________       \n"
+                               "|       |       \n"
+							   "|      (o)      \n"
+							   "| ---> /|\\      \n"
+						       "|       |       \n"
+							   "|      / \\      \n"
+							   "|     ______    \n"
+							   "|     |    |    \n"
+							   "|     |    |    \n");
+               break;        
+		case 5:        printf ("_________       \n"
+                               "|             \n"
+							   "|       ||      \n"
+							   "|   ____||___      \n"
+						       "|   ____  ___         \n"
+							   "|       ||      \n"
+							   "|       ||  \n"
+							   "|       ||    \n"
+							   "|       ||    \n");
+			   break;
+      }
+}
+
